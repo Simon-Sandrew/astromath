@@ -1,0 +1,24 @@
+{
+  "name": "astromath",
+  "version": "1.0.0",
+  "description": "Like typeracer but for math.",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^9.3.0",
+    "particles.js": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simon-Sandrew/astromath.git"
+  },
+  "author": "Simon Sandrew, Yash Kaul, Tommy Bird, Edgar Valle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Simon-Sandrew/astromath/issues"
+  },
+  "homepage": "https://github.com/Simon-Sandrew/astromath#readme"
+}
