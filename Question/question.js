@@ -31,7 +31,7 @@ function roundOdd(num1) {
         return num;
 }
 
-function generateQuestions(diff) {
+function generateQuestions(diff, size) {
 
     var MIN_VAL = 1;
     var MAX_VAL = 10;
@@ -45,7 +45,7 @@ function generateQuestions(diff) {
             if (diff == 1)
                 MAX_VAL = 100;
 
-            for(let i = 0; i < 20; i++) {
+            for(let i = 0; i < size; i++) {
                 var op_index = op[Math.round(Math.random() * 1)];
                 var num1 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
                 var num2 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
@@ -64,7 +64,7 @@ function generateQuestions(diff) {
             if (diff == 3) 
                 MAX_VAL = 100;
 
-            for(let i = 0; i < 20; i++) {
+            for(let i = 0; i < size; i++) {
                 var op_index = op[Math.round(Math.random() * 1)];
                 do {
                 var num1 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)) + 1);
@@ -82,15 +82,11 @@ function generateQuestions(diff) {
         case 4:
         case 5: {
 
+
+
         }
         break;
     }
 
     return Questions;
-}
-
-let questions = generateQuestions(3); 
-for (let i = 0; i < questions.length; i++) {
-    console.log(questions[i].question);
-    console.log(questions[i].answer);
 }
