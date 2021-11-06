@@ -1,18 +1,17 @@
-import mathjs from 'https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js'
 class Question {
-    construtor(question, answer, points) {
-        this.points = points;
-        this.question = question;
-        this.answer = answer;
+    constructor(q, a, p) {
+        this.q = q;
+        this.a = a;
+        this.p = p;
     }
-    getQuestion() {
-        return this.question;
+    get question() {
+        return this.q;
     }
-    getAnswer() {
-        return this.answer;
+    get answer() {
+        return this.a;
     }
-    getPoints() {
-        return this.points;
+    get points() {
+        return this.p;
     }
 }
 function determineAns(num1, num2, op) {
@@ -20,6 +19,10 @@ function determineAns(num1, num2, op) {
         return num1 + num2;
     if(op == "-")
         return num1 - num2;
+    if (op == "/")
+        return num1 / num2;
+    if (op == "*")
+        return num1 * num2;
 }
 
 function generateQuestions(diff) {
@@ -34,18 +37,20 @@ function generateQuestions(diff) {
             op = "+-";
 
             for(let i = 0; i < 20; i++) {
-                var op_index = op[Math.random() * 2];
-                var num1 =  (Math.random() * MAX_VAL) + MIN_VAL;
-                var num2 =  (Math.random() * MAX_VAL) + MIN_VAL;
+                var op_index = op[Math.round(Math.random() * 1)];
+                var num1 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
+                var num2 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
                 var qString = "" + num1 + " " + op_index + " " + num2 + " ?";
-                var aString = determineAns(num1,num2,op);
-                Questions.push(qString,aString,5);
+                var aString = determineAns(num1,num2,op_index);
+                const q = new Question(qString, aString, 50);
+                Questions.push(q);
             } 
         }
         break;
         
         case 1: {
             op = "*/";
+
         }
         break;
 
