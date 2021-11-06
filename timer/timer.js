@@ -8,7 +8,8 @@ setInterval(updateTimer, 1000);
 function updateTimer(){
     const minutes=Math.floor(totalSeconds/60);
     let seconds=totalSeconds%60;
-    seconds = seconds < 4 ? '0' +seconds : seconds;
+    seconds = seconds < 10 ? '0' +seconds : seconds;
     timerElem.innerHTML = `${minutes}: ${seconds}`;
     totalSeconds--;
+    totalSeconds=totalSeconds<0?0:totalSeconds;
 }
