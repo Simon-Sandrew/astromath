@@ -1,15 +1,22 @@
-let totalSeconds = 60;
+let totalSeconds = 120;
 const timerElem = document.getElementById("timer");
 const questElem = document.getElementById("question");
+const levelElem = document.getElementById("levelup");
 var level=0;
 var questions = generateQuestions(level, 5);
-const resultElem = document.getElementById("sellout");
+var finished = false;
+const resultElem = document.getElementById("result");
 const inputElem = document.getElementById("answer");
 setInterval(updateTimer, 1000);
 var counter=0;
 questElem.innerHTML=questions[counter].q;
+
+function levelUp(){
+    levelElem.innerHTML="Level Up!";
+}
+
 function getInput(){
-    resultElem.innerHTML="wow a button";
+    levelElem.innerHTML="";
     if(inputElem.value==questions[counter].a){
         counter++;
         resultElem.innerHTML="correct!";
@@ -17,8 +24,9 @@ function getInput(){
             questElem.innerHTML=questions[counter].q;
         }
         else{
+            levelUp();
             counter=0;
-            if(level<9){
+            if(level<5){
                 level++;
                 questions = generateQuestions(level, 5);
                 questElem.innerHTML=questions[counter].q;
@@ -26,6 +34,7 @@ function getInput(){
             }
             else{
                 questElem.innerHTML="u win uwu! rawr";
+                finished=true;
             }
         }
     }
@@ -35,6 +44,7 @@ function getInput(){
     inputElem.value='';
 }
 function updateTimer(){
+    if(!finished){
     const minutes=Math.floor(totalSeconds/60);
     let seconds=totalSeconds%60;
     seconds = seconds < 10 ? '0' +seconds: seconds;
@@ -42,7 +52,8 @@ function updateTimer(){
     totalSeconds--;
     totalSeconds=totalSeconds<0?0:totalSeconds;
     if(totalSeconds==0){
-        questElem.innerHTML="You may have given up on math, but we'll never let you down...";    
-        setInterval(window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ"), 4000);
+        setInterval(questElem.innerHTML="You may have given up on math, but we'll never let you down...", 4000);
+        window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     }
+}
 }
