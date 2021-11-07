@@ -1,4 +1,4 @@
-let totalSeconds = 120;
+let totalSeconds = 10;
 var init = 120.0;
 var points=0;
 const timerElem = document.getElementById("timer");
@@ -8,10 +8,10 @@ var level=0;
 var questions = generateQuestions(level, 5);
 var finished = false;
 const resultElem = document.getElementById("result");
-const inputElem = document.getElementById("answer");
+const inputElem = document.getElementById("input");
 const scoreElem = document.getElementById("score");
 const postElem = document.getElementById("postgame");
-setInterval(updateTimer, 1000);
+var timer = setInterval(updateTimer, 1000);
 var counter=0;
 questElem.innerHTML=questions[counter].q;
 function levelUp(){
@@ -19,7 +19,6 @@ function levelUp(){
 }
 function getInput(){
     levelElem.innerHTML="";
-    const delem = document.getElementById("answer2");
     if(inputElem.value==questions[counter].a){
         var difference = init-Math.round(totalSeconds);
         var point=2.0-difference/100;
@@ -61,9 +60,14 @@ function updateTimer(){
     totalSeconds--;
     totalSeconds=totalSeconds<0?0:totalSeconds;
     if(totalSeconds==0){
-        setInterval(questElem.innerHTML="You may have given up on math, but we'll never let you down...", 4000);
+        timerElem.innerHTML = `0:00`;
+        questElem.innerHTML="You may have given up on math, but we'll never let you down...";
+        timerElem.innerHTML="";
+        document.getElementById("ui").innerHTML="";
+        document.getElementById("button").innerHTML="";
         scoreElem.innerHTML="Final Score: "+points;
         postElem.innerHTML='Login to Save your Score: <button id="login" onclick="goLogin()">Login</button>';
+        clearInterval(timer);
     }
 }
 }
