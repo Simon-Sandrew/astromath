@@ -1,3 +1,4 @@
+headers.append('Access-Control-Allow-Credentials', 'true');
 let totalSeconds = 120;
 var init = 120.0;
 var points=0;

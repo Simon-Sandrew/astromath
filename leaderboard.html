@@ -41,7 +41,7 @@
   </style>
 
   <script>
-    
+    headers.append('Access-Control-Allow-Credentials', 'true');
     function loadLeaderboard(){
       let obj = runPyScript();
       console.log(obj);
