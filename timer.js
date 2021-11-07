@@ -45,8 +45,6 @@ function getInput(){
                 totalSeconds+=30;
             }
             else{
-                questElem.innerHTML="u win uwu! rawr";
-                scoreElem.innerHTML="Final Score: "+points;
                 finished=true;
             }
         }
@@ -55,6 +53,11 @@ function getInput(){
         resultElem.innerHTML="incorrect!";
     }
     uiElem.value='';
+}
+if (finished) {
+    //username
+    if (uiElem.value != "")
+        questElem.innerHTML = uiElem.value;
 }
 }
 function updateTimer(){
@@ -67,11 +70,10 @@ function updateTimer(){
     totalSeconds=totalSeconds<0?0:totalSeconds;
     if(totalSeconds==0){
         timerElem.innerHTML = `0:00`;
-        questElem.innerHTML="You may have given up on math, but we'll never let you down...";
+        questElem.innerHTML="Enter your username to save your score:";
         timerElem.innerHTML="";
         scoreElem.innerHTML="Final Score: "+points;
         finished = true;
-        postElem.innerHTML='Login to Save your Score: <button id="login" onclick="goLogin()">Login</button>';
         clearInterval(timer);
     }
 }
