@@ -1,8 +1,7 @@
-import flask
+from flask import Flask
 import pyodbc
-import asyncio
+app = Flask(__name__)
 
-app = flask.Flask(__name__)
 server = 'tcp:34.122.100.221' 
 database = 'astromathmain' 
 db_username = 'sqlserver' 

@@ -12,8 +12,8 @@
       }
 
       body {
-        background-image: url('login_bg2.jpeg');
-        background-size: cover;
+        margin:0;
+        
       }
       .content {
         max-width: 100px;
@@ -24,14 +24,37 @@
 </head>
 <body>
   
-  <div class="content">
-    <h1>ASTROMATH</h1><br><br>
-    <h><p style="color:white"> <font size="+3">LOGIN:</font></p> </h1>
-    <p style="color:white">USERNAME:</p><input type="text" id="Username"/><br>
-    <p style="color:white">PASSWORD:</p><input type="text" id="Password"/><br>
-    <button id="login" onclick="getInput()">Login</button><br>
-  </script>
-  </div>
-  
+
+    <img src="login_bg2.jpeg" style="width: 100%; position:absolute; z-index: 0;">
+    <div style="position:absolute; justify-content: center; width:300px; height:250px; border:1px solid white;right:50%; transform: translate(50%, 50%);">
+      <h1>ASTROMATH</h1><br><br>
+      <h><p style="color:white">LOGIN:</p> </h1>
+      <p style="color:white; right:50%;">USERNAME:</p><input type="text" id="Username"/><br>
+      <p style="color:white">PASSWORD:</p><input type="text" id="Password"/><br>
+      <button id="login" onclick="getInput()">Login</button><br>
+      </div>
+
+      <script>
+        //write a function get input that makes a post request to the server 
+        function getInput() {
+          var username = document.getElementById("Username").value;
+          var password = document.getElementById("Password").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              if(this.responseText == "success"){
+                window.location.href = "./index.html";
+              }
+              else{
+                alert("Invalid username or password");
+              }
+            }
+          };
+          xhttp.open("POST", "./login.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("username="+username+"&password="+password);
+        }
+
+      </script>
 </body>
 </html>
