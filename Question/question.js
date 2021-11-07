@@ -217,4 +217,3 @@ function generateQuestions(diff, size) {
 
     return Questions;
 }
-}
