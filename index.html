@@ -12,7 +12,7 @@
       }
 
       body {
-        background-image: url('cosmos1.jpeg');
+        margin:0;
         background-size: auto;    
       }
       .content {
@@ -26,12 +26,18 @@
     <title>ASTROMATH | HOME</title>
 </head>
 <body>
-    <div class="content">
-    <h1 style="font-size:8vw">ASTROMATH</h1>
+    <img src="./cosmos1.jpeg" style="z-index:-2;width: 100vw; height:100vh;"> 
+    <h1 style="top:50%; left:50%; transform:translate(-50%, -50%);font-size:8vw; position:absolute; z-index: 1;">ASTROMATH</h1>
+    <h5 style="top:55%; left:50%; transform:translate(-50%, -50%);font-size:2vw; position:absolute; z-index: 1; font-family: exoFont;">PRESS SPACE TO PLAY</h5>
     <div id="particle_background"></div>
-    <script src="node_modules/particles.js/particles.js"></script>
+    <script src="./particles.min.js"></script>
     <script src="index.js"></script>
-    <script type="modules" src="modules.js"></script>
-    </div>
+    <script>
+      document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 32) {
+      window.location.href = "game.html";
+    }
+});
+    </script>
 </body>
 </html>

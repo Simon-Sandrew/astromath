@@ -121,6 +121,18 @@ h3{
 #levelup{
     position: absolute;
     bottom:200px;
-    right:50px;
+    right:20px;
     font-family: computer;
+}
+
+
+#postgame{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background-color: #171717;
+    opacity: 0.2;
+    z-index: 3;
 }
