@@ -15,13 +15,21 @@
       transform: translateY(-25px);
     }
   }
+  @keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
     </style>
     <title>Astromath | Home</title>
 </head>
 <body>
   <script src="./particles.min.js"></script>
   <script src="index.js"></script>
- <!--- <audio src="sound.mp3" style="display:none;" autoplay loop></audio>--->
+ <audio src="sound.mp3" style="display:none;" autoplay loop></audio>
   <img id="black" src="black_hole.gif" style="opacity:0.7">
   <div id="particle_background"></div>
   <div id="game_container">
@@ -31,8 +39,17 @@
   </video>
     <h3 id="timer">2:00</p>
     <h3 id="question"></p>
+
   </div>
   <img id="rocket" src="rocket1.png" style="opacity:0.9; animation: MoveUpDown 1.2s linear infinite; margin-left: 200px; margin-top: 300px;">
+  <img id="planet1" src="mercury.svg" style="position:absolute; top:100px; left:50px; animation: rotation 1s linear infinite; width:50px; height:50px"/>
+  <img id="planet2" src="venus.svg" style="position:absolute; top:100px; left:1000px; animation: rotation 2s linear infinite;width:100px; height:100px"/>
+  <img id="planet3" src="earth.svg" style="position:absolute; top:500px; left:1100px; animation: rotation 3s linear infinite;width:100px; height:100px"/>
+  <img id="planet4" src="mars.svg" style="position:absolute; top:200px; left:1200px; animation: rotation 8s linear infinite;width:100px; height:100px"/>
+  <img id="planet5" src="jupiter.svg" style="position:absolute; top:500px; left:1250px; animation: rotation 4s linear infinite;width:150px; height:150px"/>
+  <img id="planet6" src="saturn.svg" style="position:absolute; top:400px; left:100px; animation: rotation 5s linear infinite;width:100px; height:100px"/>
+  <img id="planet7" src="neptune.svg" style="position:absolute; top:200px; left:300px; animation: rotation 6s linear infinite;width:100px; height:100px"/>
+  <img id="planet8" src="uranus.svg" style="position:absolute; top:400px; left:600px; animation: rotation 7s linear infinite;width:100px; height:100px"/>
   <div id="container"></div>
     <input id ="ui" type="text" id="input" style="outline: 1px solid white; box-shadow: 0 0 50px rgb(171 255 184 / 20%)"/>
     <h3 id="result"></p>
