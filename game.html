@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <style>
+    @keyframes MoveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+    </style>
     <title>Astromath | Home</title>
 </head>
 <body>
@@ -22,7 +32,7 @@
     <h3 id="timer">2:00</p>
     <h3 id="question"></p>
   </div>
-
+  <img id="rocket" src="rocket1.png" style="opacity:0.9; animation: MoveUpDown 1.2s linear infinite; margin-left: 200px; margin-top: 300px;">
   <div id="container"></div>
     <input id ="ui" type="text" id="input" style="outline: 1px solid white; box-shadow: 0 0 50px rgb(171 255 184 / 20%)"/>
     <h3 id="result"></p>
