@@ -99,15 +99,6 @@ function determineProb(num1, num2, div, op) {
     if (op == "area")
         return Math.sqrt(num1) * 4;
 }
-function roundOdd(num1) {
-    if (num % 2 != 0)
-        return num + 1;
-    else
-        return num;
-}
-
-
-
 function generateQuestions(diff, size) {
 
     var MIN_VAL = 1;
@@ -189,7 +180,7 @@ function generateQuestions(diff, size) {
                         break;
                     case "area": 
                         do {
-                            var area =  Math.round(Math.random() * (MAX_VAL*100-MIN_VAL+1))+1;
+                            var area =  Math.round(Math.random() * (MAX_VAL*50-MIN_VAL+1))+1;
                         } while (determineProb(area,0,0,problem_index) != Math.round(determineProb(area,0,0,problem_index)));
                         var genQ = "Find the perimeter of a square with area " + area;
                         var genS = determineProb(area,0,0,problem_index);
@@ -199,18 +190,70 @@ function generateQuestions(diff, size) {
                 }
             }
             
-            
         }
         break;
         
         case 6:
         case 7: {
+            if (diff == 7)
+                MAX_VAL = 100;
+            var problem = ["integral", "matrix"];
+            for (let i = 0; i < size; i++) {
+                var problem_index = problem[Math.round(Math.random() * 1)];
+                switch(problem_index) {
+                    case "integral":
+                        var term1;
+                        var term2;
+                        var top_bound;
+                        var ans;
+                        do {
+                        top_bound = Math.round(Math.random() * 3)+1;
+                        term1 = new Term(Math.round(Math.random() * 3)+1,Math.round(Math.random() * 2)+1);
+                        term2 = new Term(Math.round(Math.random() * 3)+1,0);
+                        ans = ((Math.pow(top_bound,(term1.pow + 1))*term1.constant) / (term1.pow + 1)) + (term2.constant*top_bound);  
+                        } while(ans != Math.round(ans));
+                        var genQ = "Solve the following definite integral:\n     " + top_bound +"\n     /\n     |  " +
+                        term1.print() + " + " + term2.print() + " dx\n     /\n    0";
+                        const i = new Question(genQ,ans,500);
+
+                        Questions.push(i);
+                        break;
+                    case "matrix":
+                        var m1v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+                        var m1v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+                        var m2v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+                        var m2v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+                        var genQ = "Solve the following matrix:\n--   -- --   --\n- " 
+                        + m1v1 + " " + m1v2 + " - -  " + m2v1 + "  -\n"
+                        +"--   -- -  " + m2v2 + "  -\n        --   --";
+                        var genS = (m2v1*m1v1+m2v2*m1v2);
+                        const m = new Question(genQ,genS,750);
+                        Questions.push(m);
+                        break;
+                }
+            }
+
 
         }
         break;
 
         case 8: {
-
+            var m1v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v3 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v4 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m2v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m2v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m3v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m3v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var genQ = "Solve the following matrix:\n--   -- --     -- --   --\n- " + 
+            m3v1 +" " + m3v2 + " - -  "+ m1v1 + " " + m1v2 + "  - -  " + m2v1 + "  -\n"
+            + "--   -- -  " + m1v3 + " " + m1v4 + "  - -  " + m2v2 + "  -\n        --     -- --   --";
+            var ans1 =  (m1v1*m2v1) + (m1v2*m2v2);
+            var ans2 =  (m1v3*m2v1) + (m1v4*m2v2);
+            var genS = (m3v1*ans1+m3v2*ans2);
+            const m = new Question(genQ,genS,750);
+            Questions.push(m);
         }
         break;
     }
