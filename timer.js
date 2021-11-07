@@ -1,6 +1,7 @@
 let totalSeconds = 120;
 var init = 120.0;
 var points=0;
+const uiElem = document.getElementById("ui");
 const timerElem = document.getElementById("timer");
 const questElem = document.getElementById("question");
 const levelElem = document.getElementById("levelup");
@@ -19,7 +20,7 @@ function levelUp(){
 }
 function getInput(){
     levelElem.innerHTML="";
-    if(inputElem.value==questions[counter].a){
+    if(uiElem.value==questions[counter].a){
         var difference = init-Math.round(totalSeconds);
         var point=2.0-difference/100;
         var points_=point*questions[counter].p;
@@ -49,7 +50,7 @@ function getInput(){
     else{
         resultElem.innerHTML="incorrect!";
     }
-    inputElem.value='';
+    uiElem.value='';
 }
 function updateTimer(){
     if(!finished){
@@ -71,6 +72,12 @@ function updateTimer(){
     }
 }
 }
+uiElem.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        getInput();
+    }
+});
 function goLogin(){
     window.location.href = "login.html";
 }
+
