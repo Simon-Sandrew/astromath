@@ -1,4 +1,6 @@
-let totalSeconds = 120;
+let totalSeconds = 10;
+var init = 120.0;
+var points=0;
 const timerElem = document.getElementById("timer");
 const questElem = document.getElementById("question");
 const levelElem = document.getElementById("levelup");
@@ -7,19 +9,25 @@ var questions = generateQuestions(level, 5);
 var finished = false;
 const resultElem = document.getElementById("result");
 const inputElem = document.getElementById("answer");
+const scoreElem = document.getElementById("score");
+const postElem = document.getElementById("postgame");
 setInterval(updateTimer, 1000);
 var counter=0;
 questElem.innerHTML=questions[counter].q;
-
 function levelUp(){
     levelElem.innerHTML="Level Up!";
 }
-
 function getInput(){
     levelElem.innerHTML="";
+    const delem = document.getElementById("answer2");
     if(inputElem.value==questions[counter].a){
-        counter++;
+        var difference = init-Math.round(totalSeconds);
+        var point=2.0-difference/100;
+        var points_=point*questions[counter].p;
+        points+=points_;
         resultElem.innerHTML="correct!";
+        scoreElem.innerHTML="Points: "+points;
+        counter++;
         if(counter<5){
             questElem.innerHTML=questions[counter].q;
         }
@@ -34,6 +42,7 @@ function getInput(){
             }
             else{
                 questElem.innerHTML="u win uwu! rawr";
+                scoreElem.innerHTML="Final Score: "+points;
                 finished=true;
             }
         }
@@ -53,7 +62,11 @@ function updateTimer(){
     totalSeconds=totalSeconds<0?0:totalSeconds;
     if(totalSeconds==0){
         setInterval(questElem.innerHTML="You may have given up on math, but we'll never let you down...", 4000);
-        window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        scoreElem.innerHTML="Final Score: "+points;
+        postElem.innerHTML='Login to Save your Score: <button id="login" onclick="goLogin()">Login</button>';
     }
 }
+}
+function goLogin(){
+    window.location.href = "login.html";
 }

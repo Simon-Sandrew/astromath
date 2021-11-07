@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script type="module">
-    import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
-    customElements.define("latex-js", LaTeXJSComponent)
-  </script>
     <title>Astromath | Home</title>
 </head>
 <body>
@@ -15,8 +11,11 @@
     <p id="question"></p>
     Answer: <input type="text" id="answer"/>
     <p id="result"></p>
-    <button id+"answer" onclick="getInput()">Submit</button>
+    <button id="answer" onclick="getInput()">Submit</button><br>
+    <p id="score">Points: 0</p>
     <p id="levelup"></p>
+    <p id="postgame"></p>
+    <p
     <script type="text/javascript" src="question.js"></script>
     <script type="text/javascript" src="timer.js"></script>
   </script>

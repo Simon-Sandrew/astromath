@@ -72,14 +72,13 @@ class Equation {
         this.term3.derivative();
     }
     print() {
-        var str = "\(";
+        var str = "";
         if (!this.term1.isZero())
             str += this.term1.print();
         if (!this.term2.isZero()) 
             str += " + " + this.term2.print();
         if (!this.term3.isZero())
             str += " + " + this.term3.print();
-        str+="\)";
         return str;
     }
 }
