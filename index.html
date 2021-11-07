@@ -5,14 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <style>
+        @font-face {
+      font-family: exoFont;
+      src: url(./font/Exo2-VariableFont_wght.ttf);
+      }
+
+      body {
+        background-image: url('cosmos1.jpeg');
+        background-size: auto;    
+      }
+      .content {
+        max-width: 600px;
+        margin: auto;
+        padding: 100px;
+        font-family: exoFont;
+      }
+      </style>
     
-    <title>Document</title>
+    <title>ASTROMATH | HOME</title>
 </head>
 <body>
-    <img src="black_hole.gif" alt="Black Hole" style="width:1260px;height:720px;">
+    <div class="content">
+    <h1 style="font-size:8vw">ASTROMATH</h1>
     <div id="particle_background"></div>
     <script src="node_modules/particles.js/particles.js"></script>
     <script src="index.js"></script>
     <script type="modules" src="modules.js"></script>
+    </div>
 </body>
 </html>
