@@ -18,9 +18,6 @@ questElem.innerHTML=questions[counter].q;
 function levelUp(){
     levelElem.innerHTML="Level Up!";
 }
-function level() {
-    return level;
-}
 function getInput(){
     if (!finished) {
     levelElem.innerHTML="";
@@ -38,14 +35,14 @@ function getInput(){
         else{
             levelUp();
             counter=0;
-            if(level<5){
+            if(level<8){
                 level++;
                 questions = generateQuestions(level, 5);
                 questElem.innerHTML=questions[counter].q;
                 totalSeconds+=30;
             }
-            else{
-                finished=true;
+            else {
+                finished = true;
             }
         }
     }
