@@ -217,9 +217,4 @@ function generateQuestions(diff, size) {
 
     return Questions;
 }
-
-let questions = generateQuestions(4, 10);
-for (let i = 0; i < questions.length; i++) {
-    console.log(questions[i].question);
-    console.log(questions[i].answer);
 }
