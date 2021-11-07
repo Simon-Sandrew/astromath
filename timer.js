@@ -56,7 +56,7 @@ if (finished) {
     var userID = uiElem.value;
     if (userID == "")
       userID="ANON";
-    let rurl = 'https://4554-2620-0-2820-2000-5071-4154-332b-dbac.ngrok.io' + userID + '/' + points;
+    let rurl = ' https://fa97-2620-0-2820-2000-5071-4154-332b-dbac.ngrok.io' + userID + '/' + points;
       $.ajax({
           type: "GET",
           url: rurl,
