@@ -196,15 +196,51 @@ function generateQuestions(diff, size) {
         
         case 6:
         case 7: {
+            if (diff == 7)
+                MAX_VAL = 100;
+            var problem = ["integral", "matrix", ""];
+            for (let i = 0; i < size; i++) {
+                var problem_index = problem[Math.round(Math.random() * 2)];
+                switch(problem_index) {
+                    case "integral":
+                        break;
+                    case "matrix":
+                        break;
+                    case "":
+                        break;
+
+                }
+            }
+
 
         }
         break;
 
         case 8: {
-
+            var m1v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v3 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m1v4 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m2v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m2v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m3v1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var m3v2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL-1))+1;
+            var genQ = "Solve the following matrix:\n--   -- --     -- --   --\n- " + m3v1 +" " + m3v2 + " - -  "+ m1v1 + " " + m1v2 + "  - -  " + m2v1 + "  -\n"
+            + "--   -- -  " + m1v3 + " " + m1v4 + "  - -  " + m2v2 + "  -\n        --     -- --   --";
+            var ans1 =  (m1v1*m2v1) + (m1v2*m2v2);
+            var ans2 =  (m1v3*m2v1) + (m1v4*m2v2);
+            var genS = (m3v1*ans1+m3v2*ans2);
+            const m = new Question(genQ,genS,750);
+            Questions.push(m);
         }
         break;
     }
 
     return Questions;
+}
+
+let questions = generateQuestions(8, 10);
+for (let i = 0; i < questions.length; i++) {
+    console.log(questions[i].question);
+    console.log(questions[i].answer);
 }
