@@ -61,7 +61,7 @@ if (finished) {
           type: "GET",
           url: rurl,
           success: function(){
-            window.location.replace("./leaderboard.html");
+            window.location.replace("https://astromath.tech/leaderboard.html");
           }
       });
 }
