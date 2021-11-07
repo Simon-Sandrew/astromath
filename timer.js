@@ -1,4 +1,4 @@
-let totalSeconds = 120;
+let totalSeconds = 10;
 var init = 120.0;
 var points=0;
 const uiElem = document.getElementById("ui");
@@ -18,7 +18,11 @@ questElem.innerHTML=questions[counter].q;
 function levelUp(){
     levelElem.innerHTML="Level Up!";
 }
+function level() {
+    return level;
+}
 function getInput(){
+    if (!finished) {
     levelElem.innerHTML="";
     if(uiElem.value==questions[counter].a){
         var difference = init-Math.round(totalSeconds);
@@ -52,6 +56,7 @@ function getInput(){
     }
     uiElem.value='';
 }
+}
 function updateTimer(){
     if(!finished){
     const minutes=Math.floor(totalSeconds/60);
@@ -64,9 +69,8 @@ function updateTimer(){
         timerElem.innerHTML = `0:00`;
         questElem.innerHTML="You may have given up on math, but we'll never let you down...";
         timerElem.innerHTML="";
-        document.getElementById("ui").innerHTML="";
-        document.getElementById("button").innerHTML="";
         scoreElem.innerHTML="Final Score: "+points;
+        finished = true;
         postElem.innerHTML='Login to Save your Score: <button id="login" onclick="goLogin()">Login</button>';
         clearInterval(timer);
     }
