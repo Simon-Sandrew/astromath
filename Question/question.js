@@ -24,6 +24,10 @@ function determineAns(num1, num2, op) {
     if (op == "*")
         return num1 * num2;
 }
+function determineProb(num1, num2, div, op) {
+    if (op == "ratio")
+        return (num1 * num2) / div;
+}
 function roundOdd(num1) {
     if (num % 2 != 0)
         return num + 1;
@@ -47,8 +51,8 @@ function generateQuestions(diff, size) {
 
             for(let i = 0; i < size; i++) {
                 var op_index = op[Math.round(Math.random() * 1)];
-                var num1 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
-                var num2 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)));
+                var num1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL+1));
+                var num2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL+1));
                 var genQ = "" + num1 + " " + op_index + " " + num2 + " ?";
                 var genA = determineAns(num1,num2,op_index);
                 const q = new Question(genQ, genA, 50);
@@ -67,8 +71,8 @@ function generateQuestions(diff, size) {
             for(let i = 0; i < size; i++) {
                 var op_index = op[Math.round(Math.random() * 1)];
                 do {
-                var num1 =  Math.round((Math.random() * (MAX_VAL-MIN_VAL+1)) + 1);
-                var num2 =  Math.round((Math.random() * (div))) + 2;
+                var num1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL+1) + 1);
+                var num2 =  Math.round(Math.random() * (div)) + 2;
                 } while (determineAns(num1,num2,op_index) != Math.round(determineAns(num1,num2,op_index)));
                 var genQ = "" + num1 + " " + op_index + " " + num2 + " ?";
                 var genS = determineAns(num1,num2,op_index);
@@ -81,12 +85,43 @@ function generateQuestions(diff, size) {
 
         case 4:
         case 5: {
+            if (diff == 5)
+                MAX_VAL = 100;
+            var problem = ["ratio", "algebra", "area"];
 
+            for (let i = 0; i < size; i++) {
+                do {
+                var num1 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL+1))+1;
+                var num2 =  Math.round(Math.random() * (MAX_VAL-MIN_VAL+1))+1;
+                var div = Math.round(Math.random() * 10) + 1;
+                } while (determineProb(num1,num2,div,"ratio") != Math.round(determineProb(num1,num2,div,"ratio")));
+                var genQ = "( x / " + num1 + " ) = ( " + num2 + " / " + div + " )";
+                var genS = determineProb(num1,num2,div,"ratio");
+                const q = new Question(genQ,genS,200);
+                Questions.push(q);
+            }
+            
+            
+        }
+        break;
+        
+        case 6:
+        case 7: {
 
+        }
+        break;
+
+        case 8: {
 
         }
         break;
     }
 
     return Questions;
+}
+
+let questions = generateQuestions(4, 10);
+for (let i = 0; i < questions.length; i++) {
+    console.log(questions[i].question);
+    console.log(questions[i].answer);
 }
