@@ -200,7 +200,7 @@ function generateQuestions(diff, size) {
             var problem = ["integral", "matrix"];
             for (let i = 0; i < size; i++) {
                 var problem_index = problem[Math.round(Math.random() * 1)];
-                switch("integral") {
+                switch(problem_index) {
                     case "integral":
                         var term1;
                         var term2;
