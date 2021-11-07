@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+
+    <title>Astromath | Leaderboard</title>
+</head>
+<body>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <div onload="loadLeaderboard()" id="leaderboard"></div>
+  <style>
+    @font-face {
+    font-family: exoFont;
+    src: url(./font/Exo2-VariableFont_wght.ttf);
+}
+
+
+@font-face {
+    font-family: computer;
+    src: url(./font/ScreenMatrix.ttf);
+}
+    .body{
+      font-family: exoFont;
+    }
+    .leaderboard-item{
+      font-family: exoFont;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+
+  <script>
+    
+    function loadLeaderboard(){
+      let obj = runPyScript();
+      console.log(obj);
+      let jsonobj = JSON.parse(obj);
+      console.log(jsonobj);
+      let counter = 0;
+      $("#leaderboard").append(`<div style="display:flex;"class="leaderboard-item">
+          <div class="leaderboard-item-place">PLACE</div>
+          <br>
+          <div class="leaderboard-item-name">USERNAME</div>
+          <br>
+          <div class="leaderboard-item-score">SCORE</div>
+          <br>
+        </div>`);
+      
+      JSON.parse(obj).forEach(function(item, index){
+        $("#leaderboard").append(`<div style="display:flex;"class="leaderboard-item">
+          <div class="leaderboard-item-place">${counter}</div>
+          <br>
+          <div class="leaderboard-item-name">${item[0]}</div>
+          <br>
+          <div class="leaderboard-item-score">${item[1]}</div>
+          <br>
+        </div>`);
+        counter++;
+      });
+    }
+
+      function runPyScript(input, username="anonuser", score){
+
+        let ngrok = 'http://9f2c-2620-0-2820-2000-5071-4154-332b-dbac.ngrok.io'
+        let rurl = ngrok + '/leaderboard'
+        var jqXHR = $.ajax({
+            type: "GET",
+            url: rurl,
+            async: false,
+            data: { mydata: input }
+        });
+        return jqXHR.responseText;
+      }
+  
+      loadLeaderboard();
+  </script>
+  
+</body>
+</html>

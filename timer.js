@@ -1,4 +1,4 @@
-let totalSeconds = 10;
+let totalSeconds = 120;
 var init = 120.0;
 var points=0;
 const uiElem = document.getElementById("ui");
@@ -56,8 +56,17 @@ function getInput(){
 }
 if (finished) {
     //username
-    if (uiElem.value != "")
-        questElem.innerHTML = uiElem.value;
+    var userID = uiElem.value;
+    if (userID == "")
+      userID="ANON";
+    let rurl = 'http://9f2c-2620-0-2820-2000-5071-4154-332b-dbac.ngrok.io/highscore/' + userID + '/' + points;
+      $.ajax({
+          type: "GET",
+          url: rurl,
+          success: function(){
+            window.location.replace("./leaderboard.html");
+          }
+      });
 }
 }
 function updateTimer(){
@@ -83,7 +92,4 @@ uiElem.addEventListener("keyup", function(event) {
         getInput();
     }
 });
-function goLogin(){
-    window.location.href = "login.html";
-}
 
