@@ -99,14 +99,6 @@ function determineProb(num1, num2, div, op) {
     if (op == "area")
         return Math.sqrt(num1) * 4;
 }
-function roundOdd(num1) {
-    if (num % 2 != 0)
-        return num + 1;
-    else
-        return num;
-}
-
-
 
 function generateQuestions(diff, size) {
 
@@ -198,7 +190,6 @@ function generateQuestions(diff, size) {
                         break;
                 }
             }
-            
             
         }
         break;
