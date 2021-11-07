@@ -1,4 +1,4 @@
-let totalSeconds = 10;
+let totalSeconds = 120;
 var init = 120.0;
 var points=0;
 const timerElem = document.getElementById("timer");
